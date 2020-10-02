@@ -2,3 +2,11 @@
 main {
     min-height: 80vh;
 }
+
+.color-nav{
+    background-color: rgb(115, 75, 47);
+}
+
+.rating span {
+    margin: 0.1rem;
+}
