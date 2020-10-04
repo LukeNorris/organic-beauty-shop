@@ -10,3 +10,7 @@ main {
 .rating span {
     margin: 0.1rem;
 }
+
+.borderless {
+    border-top: 0 none;
+  }

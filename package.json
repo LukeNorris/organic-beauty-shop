@@ -1,0 +1,22 @@
+{
+  "name": "organic-beauty",
+  "version": "1.0.0",
+  "description": "MERN shopping cart",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LukeNorris/organic-beauty-shop.git"
+  },
+  "author": "Luke Norris",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LukeNorris/organic-beauty-shop/issues"
+  },
+  "homepage": "https://github.com/LukeNorris/organic-beauty-shop#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
