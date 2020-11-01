@@ -72,7 +72,6 @@ const CartScreen = ({ match, location, history }) => {
                                             removeFromCartHandler(item.product)}
                                         >
                                             <i className='fas fa-trash'></i>
-
                                         </Button>
                                     </Col>
                                 </Row>
