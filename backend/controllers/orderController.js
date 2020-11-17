@@ -12,7 +12,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
     itemsPrice,
     taxPrice,
     shippingPrice,
-    totalPrice,
+    totalPrice
   } = req.body
 
   if (orderItems && orderItems.length === 0) {
@@ -28,7 +28,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
       itemsPrice,
       taxPrice,
       shippingPrice,
-      totalPrice,
+      totalPrice
     })
 
     const createdOrder = await order.save()
@@ -37,33 +37,32 @@ const addOrderItems = asyncHandler(async (req, res) => {
   }
 })
 
-
 /// @desc    Get order by ID
 // @route   GET /api/orders/:id
 // @access  Private
 const getOrderById = asyncHandler(async (req, res) => {
-    const order = await Order.findById(req.params.id).populate(
-      'user',
-      'name email'
-    )
-  
-    if (order) {
-      res.json(order)
-    } else {
-      res.status(404)
-      throw new Error('Order not found')
-    }
-  })
+  const order = await Order.findById(req.params.id).populate(
+    'user',
+    'name email'
+  )
+
+  if (order) {
+    res.json(order)
+  } else {
+    res.status(404)
+    throw new Error('Order not found')
+  }
+})
 
 // @desc update order to paid
-// @route   GET /api/orders/:id
+// @route   GET /api/orders/:id/pay
 // @access  Private
 const updateOrderToPaid = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id)
 
   if (order) {
     order.isPaid = true
-    order.paisAt = Date.now()
+    order.paidAt = Date.now()
     order.paymentResult = {
       id: req.body.id,
       status: req.body.status,
@@ -78,5 +77,13 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
     throw new Error('Order not found')
   }
 })
-  
-export { addOrderItems, getOrderById, updateOrderToPaid } 
+
+// @desc    Get logged in user orders
+// @route   GET /api/orders/myorders
+// @access  Private
+const getMyOrders = asyncHandler(async (req, res) => {
+  const orders = await Order.find({ user: req.user._id })
+  res.json(orders)
+})
+
+export { addOrderItems, getOrderById, updateOrderToPaid, getMyOrders }
